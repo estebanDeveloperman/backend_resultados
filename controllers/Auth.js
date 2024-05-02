@@ -13,6 +13,7 @@ export const Login = async (req, res) => {
 
   console.log("login", user.iduser);
   req.session.userId = user.iduser;
+  console.log("NEL PTMR", req.session.userId);
   console.log("login trae al session -> ", user.iduser);
   const iduser = user.iduser;
   const username = user.username;

@@ -24,7 +24,7 @@ import PosicionesRoute from "./routes/PositionRoute.js";
 import { PORT } from "./config.js";
 
 const app = express();
-
+// app.enable("trust proxy");
 const sessionStore = SequelizeStore(session.Store);
 
 const store = new sessionStore({
@@ -41,8 +41,13 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: store,
+    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
     cookie: {
-      secure: "auto",
+      httpOnly: true,
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 48,
+      sameSite: "none",
     },
   })
 );
