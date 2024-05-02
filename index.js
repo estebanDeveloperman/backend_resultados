@@ -31,9 +31,9 @@ const store = new sessionStore({
   db: db,
 });
 
-// (async () => {
-//   await db.sync();
-// })();
+(async () => {
+  await db.sync();
+})();
 
 app.use(
   session({
@@ -72,7 +72,7 @@ app.use(PeriodoRoute);
 app.use(ResultadoRoute);
 app.use(PosicionesRoute);
 // app.use(PointRoute);
-// store.sync();
+store.sync();
 
 app.listen(PORT, () => {
   console.log("Servidor levantado en el puerto", PORT);
