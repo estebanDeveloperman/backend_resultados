@@ -6,7 +6,7 @@ import Phase from "./PhaseModel.js";
 const { DataTypes } = Sequelize;
 
 const GroupsTable = db.define(
-  "groupsTable",
+  "groupstables",
   {
     idgroup: {
       type: DataTypes.INTEGER,
