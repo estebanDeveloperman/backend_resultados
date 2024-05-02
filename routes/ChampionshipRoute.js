@@ -13,4 +13,5 @@ router.get("/championships/period", getChampionshipByPeriod);
 router.get("/championships/:id", getChampionshipById);
 router.post("/championships", createChampionship);
 
+
 export default router;
