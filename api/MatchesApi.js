@@ -7,6 +7,22 @@ import Category from "../models/CategoryModel.js";
 export const getMatchesByPhaseApi = async (req, res) => {
   const { idevent, idsport } = req.query;
   try {
+    const responseCategory = await Category.findOne({
+      attributes: [
+        "id",
+        "name",
+        "acronym",
+        "quantity",
+        "logo_path",
+        "idchampionship",
+        "idsport",
+      ],
+      where: {
+        idchampionship: idevent,
+        idsport: idsport,
+      },
+    });
+
     const responsePhase = await Phase.findAll({
       attributes: [
         "idphase",
@@ -18,7 +34,7 @@ export const getMatchesByPhaseApi = async (req, res) => {
       ],
       where: {
         idchampionship: idevent,
-        idcategory: idsport,
+        idcategory: responseCategory.id,
       },
     });
     const responseData = responsePhase[0]; // la fase correspondiente
