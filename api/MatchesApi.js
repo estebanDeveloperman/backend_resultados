@@ -2,9 +2,28 @@ import Matches from "../models/MatchModel.js";
 import GroupsTable from "../models/GroupsModel.js";
 import Participant from "../models/ParticipantsModel.js";
 import Phase from "../models/PhaseModel.js";
+import Category from "../models/CategoryModel.js";
 
 export const getMatchesByPhaseApi = async (req, res) => {
+  const { idevent, idsport } = req.query;
   try {
+    const responsePhase = await Phase.findAll({
+      attributes: [
+        "idphase",
+        "idtypeCompetition",
+        "ismerito",
+        "numberOrder",
+        "idchampionship",
+        "idcategory",
+      ],
+      where: {
+        idchampionship: idevent,
+        idcategory: idsport,
+      },
+    });
+    const responseData = responsePhase[0]; // la fase correspondiente
+    const idPhase = responseData.idphase;
+
     const response = await Matches.findAll({
       attributes: [
         "idmatch",
@@ -26,7 +45,7 @@ export const getMatchesByPhaseApi = async (req, res) => {
         "idphase",
       ],
       where: {
-        idphase: req.params.idphase,
+        idphase: idPhase,
         statusDB: true,
       },
     });
