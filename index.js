@@ -25,6 +25,7 @@ import { PORT } from "./config.js";
 
 const app = express();
 // app.enable("trust proxy");
+app.set("trust proxy", 1);
 const sessionStore = SequelizeStore(session.Store);
 
 const store = new sessionStore({
@@ -44,9 +45,7 @@ app.use(
     proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
     name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
     cookie: {
-      httpOnly: true,
       secure: true,
-      maxAge: 1000 * 60 * 60 * 48,
       sameSite: "none",
     },
   })
