@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
-import session from "express-session";
-import dotenv from "dotenv";
+import session from "express-session"
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
 import UserRoute from "./routes/UserRoute.js";
@@ -23,8 +22,6 @@ import PosicionesRoute from "./routes/PositionRoute.js";
 // import PointRoute from "./routes/PointRoute.js";
 // import configuraciones -->
 import { PORT } from "./config.js";
-
-dotenv.config();
 
 const app = express();
 
