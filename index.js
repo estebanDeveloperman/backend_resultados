@@ -19,6 +19,9 @@ import AthleteRoute from "./routes/AthleteRoute.js";
 import PeriodoRoute from "./routes/PeriodRoute.js";
 import ResultadoRoute from "./routes/ResultRoute.js";
 import PosicionesRoute from "./routes/PositionRoute.js";
+
+// API
+import MatchApiRoute from "./routes/api/MatchesRouteApi.js";
 // import PointRoute from "./routes/PointRoute.js";
 // import configuraciones -->
 import { PORT } from "./config.js";
@@ -76,6 +79,7 @@ app.use(AthleteRoute);
 app.use(PeriodoRoute);
 app.use(ResultadoRoute);
 app.use(PosicionesRoute);
+app.use(MatchApiRoute);
 // app.use(PointRoute);
 // store.sync();
 
