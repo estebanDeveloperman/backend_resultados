@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import session from "express-session"
+import session from "express-session";
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
 import UserRoute from "./routes/UserRoute.js";
@@ -50,7 +50,8 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: "https://winscore.perufedup.com",
     methods: ["POST", "GET", "DELETE", "PUT", "PATCH"],
   })
 );
