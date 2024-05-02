@@ -54,8 +54,8 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
-    // origin: "https://winscore.perufedup.com",
+    // origin: "http://localhost:3000",
+    origin: "https://winscore.perufedup.com",
     methods: ["POST", "GET", "DELETE", "PUT", "PATCH"],
   })
 );
