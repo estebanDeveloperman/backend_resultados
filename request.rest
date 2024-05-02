@@ -1,0 +1,91 @@
+// Create a user
+POST http://localhost:7500/users
+Content-Type: application/json
+
+{
+    "username": "EESPINOZA",
+    "email": "esteban@gmail.com",
+    "password": "12345",
+    "firstname": "Esteban",
+    "surnames": "Espinoza",
+    "phone": "921345678",
+    "function_name": "Admin",
+    "status": "1"
+}
+###
+
+// Create a user
+POST http://localhost:7500/users
+Content-Type: application/json
+
+{
+    "username": "JSILVA",
+    "email": "jsilva@gmail.com",
+    "password": "basquetbol2024",
+    "firstname": "JUAN",
+    "surnames": "SILVA",
+    "phone": "999431689",
+    "function_name": "Coordinador",
+    "status": "1"
+}
+
+###
+// get all users
+GET http://localhost:7500/users
+
+###
+// get sigle user
+GET http://localhost:7500/users/1
+
+###
+// LOGIN USER
+POST http://localhost:7500/login
+Content-Type: application/json
+
+{
+    "username": "EESPINOZA",
+    "password": "12345"
+}
+
+###
+GET http://localhost:7500/me
+
+###
+DELETE http://localhost:7500/logout
+
+###
+// CONSULTAR FASES
+GET http://localhost:7500/phasesinfo/?championship=186&category=1
+
+###
+// CONSULTAR GRUPOS
+GET http://localhost:7500/groups/4
+
+###
+// CONSULTAR FIXTURE
+GET http://localhost:7500/fixtures/5
+
+###
+GET http://localhost:7500/pointfecha/
+Content-Type: application/json
+
+{
+    "idphase": 8,
+    "fechaOrder": 1
+}
+
+###
+POST http://localhost:7500/participants
+Content-Type: application/json
+
+[{
+  "positionP": 12,
+  "denominationP": "",
+  "idchampionship": 186,
+  "idcategory": 44,
+  "idphase": 46,
+  "idinstitution": 2,
+  "business_name": "E.O. Fuerza Aerea del Perú",
+  "abrev": "EOFAP",
+  "image_path": "/assets/logo_u/eofap.png"
+}]
