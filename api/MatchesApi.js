@@ -168,15 +168,17 @@ export const getMatchesByPhaseApi = async (req, res) => {
     ];
     const groupedArray = groupByDateOrder(fechas);
     const groupedResult = Object.values(groupedArray);
-    const groupedResultA = groupedResult.map(([key, ids], index) => {
-      const [dateOrder, letterRef] = key.split("-");
-      return {
-        idmatch: index + 1,
-        dateOrder: parseInt(dateOrder),
-        letterRef,
-        ids,
-      };
-    });
+    const groupedResultA = Object.entries(groupedArray).map(
+      ([key, ids], index) => {
+        const [dateOrder, letterRef] = key.split("-");
+        return {
+          idmatch: index + 1,
+          dateOrder: parseInt(dateOrder),
+          letterRef,
+          ids,
+        };
+      }
+    );
 
     res.status(200).json(groupedResultA);
   } catch (error) {
