@@ -144,9 +144,41 @@ export const getMatchesByPhaseApi = async (req, res) => {
     const groupedArray = groupByDateOrder(responseMapeado);
     const groupedResult = Object.values(groupedArray);
 
-    // FECHAS
-    
-    res.status(200).json(groupedResult);
+    function groupByDateOrder(data) {
+      const groupedByDateAndLetter = {};
+      data.forEach((element) => {
+        const key = `${element.dateOrder}-${element.letterRef}`;
+        if (!groupedByDateAndLetter[key]) {
+          groupedByDateAndLetter[key] = [];
+        }
+        groupedByDateAndLetter[key].push(element.idfecha);
+      });
+      return groupedByDateAndLetter;
+    }
+
+    const fechas = [
+      { idfecha: 1, dateOrder: 1, letterRef: "A" },
+      { idfecha: 2, dateOrder: 2, letterRef: "A" },
+      { idfecha: 3, dateOrder: 3, letterRef: "A" },
+      { idfecha: 4, dateOrder: 4, letterRef: "A" },
+      { idfecha: 5, dateOrder: 5, letterRef: "A" },
+      { idfecha: 6, dateOrder: 1, letterRef: "B" },
+      { idfecha: 7, dateOrder: 2, letterRef: "B" },
+      { idfecha: 8, dateOrder: 3, letterRef: "B" },
+      { idfecha: 9, dateOrder: 4, letterRef: "B" },
+      { idfecha: 10, dateOrder: 5, letterRef: "B" },
+    ];
+    const groupedResultA = groupedResult.map(([key, ids], index) => {
+      const [dateOrder, letterRef] = key.split("-");
+      return {
+        idmatch: index + 1,
+        dateOrder: parseInt(dateOrder),
+        letterRef,
+        ids,
+      };
+    });
+
+    res.status(200).json(groupedResultA);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
