@@ -52,5 +52,5 @@ export const getMatchesByPhaseApi = async (req, res) => {
     letterRef: "B",
   });
 
-  res.status(200).json(fechas);
+  res.status(200).json(fechas)
 };
