@@ -166,6 +166,9 @@ export const getMatchesByPhaseApi = async (req, res) => {
         }
       );
     });
+    const filteredSimplifiedData = simplifiedData.map((group) => {
+      return group.filter(({ dateOrder }) => dateOrder === parseInt(idfecha));
+    });
 
     const fechas = [
       { idfecha: 1, dateOrder: 1, letterRef: "A" },
@@ -180,13 +183,9 @@ export const getMatchesByPhaseApi = async (req, res) => {
       { idfecha: 10, dateOrder: 5, letterRef: "B" },
     ];
 
-    const flattenedData = simplifiedData.flatMap((group) => group);
+    const flattenedData = filteredSimplifiedData.flatMap((group) => group);
 
-    const filteredData = flattenedData.filter((obj) => {
-      return obj.idfecha === parseInt(idfecha);
-    });
-
-    const dataWithIdFecha = filteredData.map((obj) => {
+    const dataWithIdFecha = flattenedData.map((obj) => {
       const matchingFecha = fechas.find(
         (fecha) =>
           fecha.dateOrder === obj.dateOrder &&
