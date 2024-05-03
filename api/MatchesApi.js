@@ -186,7 +186,7 @@ export const getMatchesByPhaseApi = async (req, res) => {
       const matchingFecha = fechas.find(
         (fecha) =>
           fecha.dateOrder === obj.dateOrder &&
-          fecha.letterRef.charCodeAt(0) === obj.groupAsciiLetter
+          fecha.letterRef === String.fromCharCode(obj.groupAsciiLetter)
       );
       if (matchingFecha) {
         return { ...obj, idfecha: matchingFecha.idfecha };
