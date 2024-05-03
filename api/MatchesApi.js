@@ -167,7 +167,9 @@ export const getMatchesByPhaseApi = async (req, res) => {
       );
     });
 
-    res.status(200).json(simplifiedData);
+    const flattenedData = simplifiedData.flatMap((group) => group);
+
+    res.status(200).json(flattenedData);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
