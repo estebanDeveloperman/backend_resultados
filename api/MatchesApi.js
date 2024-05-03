@@ -144,9 +144,28 @@ export const getMatchesByPhaseApi = async (req, res) => {
     const groupedArray = groupByDateOrder(responseMapeado);
     const groupedResult = Object.values(groupedArray);
 
-    // FECHAS
+    // DATO QUE NECESITO DEL GROUPEDRESULT
+    const simplifiedData = groupedResult.map(
+      ({
+        insitutionGroup1,
+        insitutionGroup2,
+        resultado1,
+        resultado2,
+        dateOrder,
+        groupAsciiLetter,
+      }) => {
+        return {
+          insitutionGroup1,
+          insitutionGroup2,
+          resultado1,
+          resultado2,
+          dateOrder,
+          groupAsciiLetter,
+        };
+      }
+    );
 
-    res.status(200).json(groupedResult);
+    res.status(200).json(simplifiedData);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
