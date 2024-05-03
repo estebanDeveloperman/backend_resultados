@@ -167,9 +167,36 @@ export const getMatchesByPhaseApi = async (req, res) => {
       );
     });
 
+    const fechas = [
+      { idfecha: 1, dateOrder: 1, letterRef: "A" },
+      { idfecha: 2, dateOrder: 2, letterRef: "A" },
+      { idfecha: 3, dateOrder: 3, letterRef: "A" },
+      { idfecha: 4, dateOrder: 4, letterRef: "A" },
+      { idfecha: 5, dateOrder: 5, letterRef: "A" },
+      { idfecha: 6, dateOrder: 1, letterRef: "B" },
+      { idfecha: 7, dateOrder: 2, letterRef: "B" },
+      { idfecha: 8, dateOrder: 3, letterRef: "B" },
+      { idfecha: 9, dateOrder: 4, letterRef: "B" },
+      { idfecha: 10, dateOrder: 5, letterRef: "B" },
+    ];
+
     const flattenedData = simplifiedData.flatMap((group) => group);
 
-    res.status(200).json(flattenedData);
+    const dataWithIdFecha = flattenedData.map((obj) => {
+      const matchingFecha = fechas.find(
+        (fecha) =>
+          fecha.dateOrder === obj.dateOrder &&
+          fecha.letterRef.charCodeAt(0) === obj.groupAsciiLetter
+      );
+      if (matchingFecha) {
+        return { ...obj, idfecha: matchingFecha.idfecha };
+      } else {
+        // Si no se encuentra una coincidencia, asigna null a idfecha
+        return { ...obj, idfecha: null };
+      }
+    });
+
+    res.status(200).json(dataWithIdFecha);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
