@@ -148,16 +148,16 @@ export const getMatchesByPhaseApi = async (req, res) => {
     const simplifiedData = groupedResult.map((group) => {
       return group.map(
         ({
-          insitutionGroup1,
-          insitutionGroup2,
+          institucionGroup1,
+          institucionGroup2,
           resultado1,
           resultado2,
           dateOrder,
           groupAsciiLetter,
         }) => {
           return {
-            insitutionGroup1,
-            insitutionGroup2,
+            institucionGroup1,
+            institucionGroup2,
             resultado1,
             resultado2,
             dateOrder,
