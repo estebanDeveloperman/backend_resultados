@@ -145,25 +145,27 @@ export const getMatchesByPhaseApi = async (req, res) => {
     const groupedResult = Object.values(groupedArray);
 
     // DATO QUE NECESITO DEL GROUPEDRESULT
-    const simplifiedData = groupedResult.map(
-      ({
-        insitutionGroup1,
-        insitutionGroup2,
-        resultado1,
-        resultado2,
-        dateOrder,
-        groupAsciiLetter,
-      }) => {
-        return {
+    const simplifiedData = groupedResult.map((group) => {
+      return group.map(
+        ({
           insitutionGroup1,
           insitutionGroup2,
           resultado1,
           resultado2,
           dateOrder,
           groupAsciiLetter,
-        };
-      }
-    );
+        }) => {
+          return {
+            insitutionGroup1,
+            insitutionGroup2,
+            resultado1,
+            resultado2,
+            dateOrder,
+            groupAsciiLetter,
+          };
+        }
+      );
+    });
 
     res.status(200).json(simplifiedData);
   } catch (error) {
