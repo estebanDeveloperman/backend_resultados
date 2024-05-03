@@ -144,6 +144,8 @@ export const getMatchesByPhaseApi = async (req, res) => {
     const groupedArray = groupByDateOrder(responseMapeado);
     const groupedResult = Object.values(groupedArray);
 
+    // FECHAS
+    
     res.status(200).json(groupedResult);
   } catch (error) {
     res.status(500).json({ msg: error.message });

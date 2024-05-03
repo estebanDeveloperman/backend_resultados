@@ -22,6 +22,7 @@ import PosicionesRoute from "./routes/PositionRoute.js";
 
 // API
 import MatchApiRoute from "./routes/api/MatchesRouteApi.js";
+import FechaRoute from "./routes/api/FechaRouteApi.js";
 // import PointRoute from "./routes/PointRoute.js";
 // import configuraciones -->
 import { PORT } from "./config.js";
@@ -80,6 +81,7 @@ app.use(PeriodoRoute);
 app.use(ResultadoRoute);
 app.use(PosicionesRoute);
 app.use(MatchApiRoute);
+app.use(FechaRoute);
 // app.use(PointRoute);
 // store.sync();
 
