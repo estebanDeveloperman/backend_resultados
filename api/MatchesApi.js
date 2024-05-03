@@ -141,8 +141,6 @@ export const getMatchesByPhaseApi = async (req, res) => {
     const responseMapeado = await Promise.all(responseMapeadoPromises);
 
     // -->
-    const groupedArray = groupByDateOrder(responseMapeado);
-    const groupedResult = Object.values(groupedArray);
 
     function groupByDateOrder(data) {
       const groupedByDateAndLetter = {};
@@ -168,6 +166,8 @@ export const getMatchesByPhaseApi = async (req, res) => {
       { idfecha: 9, dateOrder: 4, letterRef: "B" },
       { idfecha: 10, dateOrder: 5, letterRef: "B" },
     ];
+    const groupedArray = groupByDateOrder(fechas);
+    const groupedResult = Object.values(groupedArray);
     const groupedResultA = groupedResult.map(([key, ids], index) => {
       const [dateOrder, letterRef] = key.split("-");
       return {
