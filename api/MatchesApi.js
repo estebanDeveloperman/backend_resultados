@@ -5,7 +5,7 @@ import Phase from "../models/PhaseModel.js";
 import Category from "../models/CategoryModel.js";
 
 export const getMatchesByPhaseApi = async (req, res) => {
-  const { idevent, idsport } = req.query;
+  const { idevent, idsport, idfecha } = req.query;
   try {
     const responseCategory = await Category.findOne({
       attributes: [
@@ -182,7 +182,11 @@ export const getMatchesByPhaseApi = async (req, res) => {
 
     const flattenedData = simplifiedData.flatMap((group) => group);
 
-    const dataWithIdFecha = flattenedData.map((obj) => {
+    const filteredData = flattenedData.filter((obj) => {
+      return obj.idfecha === parseInt(idfecha);
+    });
+
+    const dataWithIdFecha = filteredData.map((obj) => {
       const matchingFecha = fechas.find(
         (fecha) =>
           fecha.dateOrder === obj.dateOrder &&
