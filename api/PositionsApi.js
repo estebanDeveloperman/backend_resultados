@@ -3,7 +3,7 @@ import Phase from "../models/PhaseModel.js";
 import Category from "../models/CategoryModel.js";
 
 export const getPositionsByApi = async (req, res) => {
-  const { idevent, idsport, nroFecha } = req.query;
+  const { idevent, idsport, nrofecha } = req.query;
   try {
     const responseCategory = await Category.findOne({
       attributes: [

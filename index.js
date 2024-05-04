@@ -24,6 +24,7 @@ import PosicionesRoute from "./routes/PositionRoute.js";
 // API
 import MatchApiRoute from "./routes/api/MatchesRouteApi.js";
 import FechaRoute from "./routes/api/FechaRouteApi.js";
+import PositionRoute from "./routes/api/PositionsRouteApi.js";
 // import PointRoute from "./routes/PointRoute.js";
 // import configuraciones -->
 import { PORT } from "./config.js";
@@ -69,7 +70,6 @@ app.use(
 //   }
 // }));
 
-
 app.use(
   cors({
     credentials: true,
@@ -95,8 +95,10 @@ app.use(AthleteRoute);
 app.use(PeriodoRoute);
 app.use(ResultadoRoute);
 app.use(PosicionesRoute);
+
 app.use(MatchApiRoute);
 app.use(FechaRoute);
+app.use(PositionRoute);
 // app.use(PointRoute);
 // store.sync();
 
