@@ -43,38 +43,38 @@ const store = new sessionStore({
 // })();
 
 // produccion
-// app.use(
-//   session({
-//     secret: "tiwihas1238989esternocleidomastoideo",
-//     resave: false,
-//     saveUninitialized: true,
-//     store: store,
-//     proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-//     name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
-//     cookie: {
-//       secure: true,
-//       sameSite: "none",
-//     },
-//   })
-// );
+app.use(
+  session({
+    secret: "tiwihas1238989esternocleidomastoideo",
+    resave: false,
+    saveUninitialized: true,
+    store: store,
+    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
+    cookie: {
+      secure: true,
+      sameSite: "none",
+    },
+  })
+);
 
 // dev
-app.use(session({
-  secret: process.env.SESS_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  store: store,
-  cookie: {
-      secure: 'auto'
-  }
-}));
+// app.use(session({
+//   secret: process.env.SESS_SECRET,
+//   resave: false,
+//   saveUninitialized: true,
+//   store: store,
+//   cookie: {
+//       secure: 'auto'
+//   }
+// }));
 
 
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
-    // origin: "https://winscore.perufedup.com",
+    // origin: "http://localhost:3000",
+    origin: "https://winscore.perufedup.com",
     methods: ["POST", "GET", "DELETE", "PUT", "PATCH"],
   })
 );
