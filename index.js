@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import session from "express-session";
+import dotenv from "dotenv";
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
 import UserRoute from "./routes/UserRoute.js";
@@ -27,6 +28,7 @@ import FechaRoute from "./routes/api/FechaRouteApi.js";
 // import configuraciones -->
 import { PORT } from "./config.js";
 
+dotenv.config();
 const app = express();
 // app.enable("trust proxy");
 app.set("trust proxy", 1);
@@ -40,26 +42,39 @@ const store = new sessionStore({
 //   await db.sync();
 // })();
 
-app.use(
-  session({
-    secret: "tiwihas1238989esternocleidomastoideo",
-    resave: false,
-    saveUninitialized: true,
-    store: store,
-    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
-    cookie: {
-      secure: true,
-      sameSite: "none",
-    },
-  })
-);
+// produccion
+// app.use(
+//   session({
+//     secret: "tiwihas1238989esternocleidomastoideo",
+//     resave: false,
+//     saveUninitialized: true,
+//     store: store,
+//     proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+//     name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
+//     cookie: {
+//       secure: true,
+//       sameSite: "none",
+//     },
+//   })
+// );
+
+// dev
+app.use(session({
+  secret: process.env.SESS_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: store,
+  cookie: {
+      secure: 'auto'
+  }
+}));
+
 
 app.use(
   cors({
     credentials: true,
-    // origin: "http://localhost:3000",
-    origin: "https://winscore.perufedup.com",
+    origin: "http://localhost:3000",
+    // origin: "https://winscore.perufedup.com",
     methods: ["POST", "GET", "DELETE", "PUT", "PATCH"],
   })
 );

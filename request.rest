@@ -28,6 +28,22 @@ Content-Type: application/json
     "function_name": "Coordinador",
     "status": "1"
 }
+###
+
+// Create a user
+POST http://localhost:7500/users
+Content-Type: application/json
+
+{
+    "username": "CFUENTES",
+    "email": "consuelo@gmail.com",
+    "password": "consuelo123",
+    "firstname": "CONSUELO",
+    "surnames": "FUENTES",
+    "phone": "922062827",
+    "function_name": "Coordinador",
+    "status": "1"
+}
 
 ###
 // get all users
